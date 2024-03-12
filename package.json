@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "dev": "wrangler dev src/xherceServer.ts",
+    "deploy": "wrangler deploy --minify src/xherceServer.ts"
+  },
+  "dependencies": {
+    "hono": "^4.0.9",
+    "langchain": "^0.1.25"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240208.0",
+    "wrangler": "^3.25.0"
+  }
+}
