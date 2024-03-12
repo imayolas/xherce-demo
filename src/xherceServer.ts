@@ -13,12 +13,12 @@ app.post("/chat/completions", async (c) => {
   const body = await c.req.json();
   return streamSSE(c, async (stream) => {
     const context = {
-      write: async (text: string) => {
+      writeMessage: async (text: string) => {
         return await stream.writeSSE({
           data: JSON.stringify(getOpenaiResponseBody(text, false)),
         });
       },
-      uiUpdate: async (text: string) => {
+      updateWaitingMessage: async (text: string) => {
         // Not implemented
         return await Promise.resolve();
       },

@@ -1,7 +1,7 @@
 interface Context {
-  write: (text: string) => Promise<void>;
+  writeMessage: (text: string) => Promise<void>;
   sleep: (ms: number) => Promise<void>;
-  uiUpdate: (text: string) => Promise<void>;
+  updateWaitingMessage: (text: string) => Promise<void>;
 }
 
 interface Message {
@@ -16,24 +16,22 @@ interface Body {
 }
 
 export const xherceLangchain = async (
-  { write, sleep, uiUpdate }: Context,
+  { writeMessage, updateWaitingMessage }: Context,
   body: Body
 ) => {
-  await uiUpdate("Working on it...");
-  console.log("First step in the langchain: Parsing the body");
-  // Implement Langchain logic here
-  await sleep(500); // Simulate loading time
+  console.log("The body is: ", body);
 
-  console.log("Retrieving the data from the vector DB...");
-  await uiUpdate("Doing the RAG thing...");
+  await updateWaitingMessage("Working on it...");
   // Implement Langchain logic here
-  await sleep(2000); // Simulate loading time
+  console.log("Step 1 in the chain...");
+
+  await updateWaitingMessage("Doing the RAG thing...");
+  // Implement Langchain logic here
+  console.log("Step 2 in the chain...");
 
   const promptResult =
     "The number of sales in UK for 2023 were 12 million pounds.";
 
   // Return the result to Joia
-  await write(promptResult);
+  await writeMessage(promptResult);
 };
-
-const;
